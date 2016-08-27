@@ -18,6 +18,8 @@ function wrdsb_remove_user_profile_fields($contactmethods) {
 # Save our custom profile fields when user/profile is saved/updated
 function wrdsb_save_extra_user_profile_fields($user_id) {
 	if (!current_user_can('edit_user', $user_id)) { return false; }
+	update_user_option($user_id, 'wrdsb_id_number', $_POST['wrdsb_id_number']);
+	update_user_option($user_id, 'wrdsb_school', $_POST['wrdsb_school']);
 	update_user_option($user_id, 'wrdsb_voicemail', $_POST['wrdsb_voicemail']);
 	update_user_option($user_id, 'wrdsb_job_title', $_POST['wrdsb_job_title']);
 	update_user_option($user_id, 'wrdsb_display_in_staff_list', $_POST['wrdsb_display_in_staff_list']);
@@ -27,6 +29,8 @@ function wrdsb_save_extra_user_profile_fields($user_id) {
 
 # Add custom profile fields to user profile editing screen
 function wrdsb_extra_user_profile_fields($user) { ?>
+  <input type="hidden" name="wrdsb_id_number" value="<?php echo esc_attr(get_user_option('wrdsb_id_number', $user->ID)); ?>">
+	<input type="hidden" name="wrdsb_school" value="<?php echo esc_attr(get_user_option('wrdsb_school', $user->ID)); ?>">
 	<h3>Staff List Options for this Website</h3>
 	<p>The following options determine what, if any, information is displayed about you
 	   in this website's Staff List. <strong>This information can be different for each website.</strong></p>
@@ -100,7 +104,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
     jQuery(document).ready(function() {
       jQuery('#nickname').parent().parent().hide();
       jQuery('#display_name').parent().parent().hide();
-      jQuery('#email').prop("disabled", true);
+      jQuery('#email').parent().parent().hide();
       jQuery('#url').parent().parent().hide();
     });
   </script>
