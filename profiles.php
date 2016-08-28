@@ -84,7 +84,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
       <th><label for="wrdsb_website_url">Website URL</label></th>
       <td>
         <input type="text" id="wrdsb_website_url" name="wrdsb_website_url" size="50" value="<?php echo esc_attr(get_user_option('wrdsb_website_url', $user->ID )); ?>" />
-        <br /><span class="description">Enter a wrdsb.ca website URL (http://teachers.wrdsb.ca/mysite or http://blogs.wrdsb.ca/myblog). Non-WRDSB website URLs will not be displayed. Please create a teachers.wrdsb.ca website and link to outside websites from there. Don't forget the http://</span>
+        <br /><span class="description">Enter a wrdsb.ca website URL (http://teachers.wrdsb.ca/mysite or http://blogs.wrdsb.ca/myblog). Website URLs outside of teachers.wrdsb.ca and blogs.wrdsb.ca will not be displayed. Please create a teachers.wrdsb.ca website and link to outside websites from there. Don't forget the http://</span>
       </td>
     </tr>
     <tr>
@@ -102,10 +102,12 @@ function wrdsb_extra_user_profile_fields($user) { ?>
   </table>
   <script>
     jQuery(document).ready(function() {
-      jQuery('#nickname').parent().parent().hide();
-      jQuery('#display_name').parent().parent().hide();
+			jQuery('#user_login').parent().parent().hide();
       jQuery('#email').parent().parent().hide();
       jQuery('#url').parent().parent().hide();
+			jQuery("h2:contains('Contact Info')").hide();
+			jQuery("th:contains('Profile Picture')").parent().hide();
+			jQuery("th:contains('Profile Photo')").parent().parent().parent().hide();
     });
   </script>
 <?php } ?>
