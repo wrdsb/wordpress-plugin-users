@@ -5,7 +5,7 @@
 * Description: Profile tweaks, custom meta fields, user roles, and API endpoints for Users.
 * Author: WRDSB
 * Author URI: https://github.com/wrdsb
-* Version: 0.0.1
+* Version: 0.0.2
 * License: GPLv3 or later
 * GitHub Plugin URI: wrdsb/wordpress-plugin-users
 * GitHub Branch: master

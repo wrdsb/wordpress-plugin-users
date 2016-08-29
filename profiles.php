@@ -42,6 +42,8 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value=""                      <?php selected('', get_user_option('wrdsb_job_title', $user->ID)); ?>>Blank</option>
           <option value="Admin Assistant"       <?php selected('Admin Assistant', get_user_option('wrdsb_job_title', $user->ID)); ?>>Admin Assistant</option>
           <option value="Assistant Office Supervisor"  <?php selected('Assistant Office Supervisor', get_user_option('wrdsb_job_title', $user->ID)); ?>>Assistant Office Supervisor</option>
+          <option value="Attendance Secretary"  <?php selected('Attendance Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Attendance Secretary</option>
+          <option value="Counselor"             <?php selected('Counselor', get_user_option('wrdsb_job_title', $user->ID)); ?>>Counselor</option>
           <option value="Custodian"             <?php selected('Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Custodian</option>
           <option value="CYW"                   <?php selected('CYW', get_user_option('wrdsb_job_title', $user->ID)); ?>>CYW</option>
           <option value="DECE"                  <?php selected('DECE', get_user_option('wrdsb_job_title', $user->ID)); ?>>DECE</option>
@@ -49,6 +51,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Educational Assistant" <?php selected('Educational Assistant', get_user_option('wrdsb_job_title', $user->ID)); ?>>Educational Assistant</option>
           <option value="ESL Contact Teacher"   <?php selected('ESL Contact Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>ESL Contact Teacher</option>
           <option value="ESL Teacher"           <?php selected('ESL Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>ESL Teacher</option>
+          <option value="Guidance Secretary"    <?php selected('Guidance Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Guidance Secretary</option>
           <option value="Head Custodian"        <?php selected('Head Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Custodian</option>
           <option value="Head Secretary"        <?php selected('Head Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Secretary</option>
           <option value="In School Technician"  <?php selected('In School Technician', get_user_option('wrdsb_job_title', $user->ID)); ?>>In School Technician</option>
@@ -58,6 +61,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="School Social Worker"  <?php selected('School Social Worker', get_user_option('wrdsb_job_title', $user->ID)); ?>>School Social Worker</option>
           <option value="Secretary"             <?php selected('Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Secretary</option>
           <option value="Teacher"               <?php selected('Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher</option>
+          <option value="Teacher Librarian"     <?php selected('Teacher Librarian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher Librarian</option>
           <option value="Vice-Principal"        <?php selected('Vice-Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Vice-Principal</option>
         </select>
         <br /><span class="description">If you do not see your role in this list, please file an <a href="https://itservicedesk.wrdsb.ca/">IT Service Desk ticket</a> and we'll happily add it for you. While you are waiting for the role to be added, please choose Blank from this list, or choose to not display your information in the Staff List.</span>

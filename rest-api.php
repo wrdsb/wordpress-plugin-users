@@ -31,8 +31,8 @@ function usermeta_register_wrdsb_voicemail() {
 	register_rest_field( 'user',
 		'wrdsb_voicemail',
 		array(
-			'get_callback'    => 'usermeta_get_value',
-			'update_callback' => 'usermeta_update_value',
+			'get_callback'    => 'useroption_get_value',
+			'update_callback' => 'useroption_update_value',
 			'schema'          => null,
 		)
 	);
@@ -44,8 +44,8 @@ function usermeta_register_wrdsb_job_title() {
 	register_rest_field( 'user',
 		'wrdsb_job_title',
 		array(
-			'get_callback'    => 'usermeta_get_value',
-			'update_callback' => 'usermeta_update_value',
+			'get_callback'    => 'useroption_get_value',
+			'update_callback' => 'useroption_update_value',
 			'schema'          => null,
 		)
 	);
@@ -57,8 +57,8 @@ function usermeta_register_wrdsb_display_in_staff_list() {
 	register_rest_field( 'user',
 		'wrdsb_display_in_staff_list',
 		array(
-			'get_callback'    => 'usermeta_get_value',
-			'update_callback' => 'usermeta_update_value',
+			'get_callback'    => 'useroption_get_value',
+			'update_callback' => 'useroption_update_value',
 			'schema'          => null,
 		)
 	);
@@ -70,8 +70,8 @@ function usermeta_register_wrdsb_contact_options() {
 	register_rest_field( 'user',
 		'wrdsb_contact_options',
 		array(
-			'get_callback'    => 'usermeta_get_value',
-			'update_callback' => 'usermeta_update_value',
+			'get_callback'    => 'useroption_get_value',
+			'update_callback' => 'useroption_update_value',
 			'schema'          => null,
 		)
 	);
@@ -83,15 +83,15 @@ function usermeta_register_wrdsb_website_url() {
 	register_rest_field( 'user',
 		'wrdsb_website_url',
 		array(
-			'get_callback'    => 'usermeta_get_value',
-			'update_callback' => 'usermeta_update_value',
+			'get_callback'    => 'useroption_get_value',
+			'update_callback' => 'useroption_update_value',
 			'schema'          => null,
 		)
 	);
 }
 
 /**
- * Handler for getting custom field data.
+ * Handler for getting custom user meta field data.
  *
  * @param array $object The object from the response
  * @param string $field_name Name of field
@@ -100,11 +100,24 @@ function usermeta_register_wrdsb_website_url() {
  * @return mixed
  */
 function usermeta_get_value( $object, $field_name, $request ) {
+    return get_user_meta( $object['id'], $field_name );
+}
+
+/**
+ * Handler for getting custom user option field data.
+ *
+ * @param array $object The object from the response
+ * @param string $field_name Name of field
+ * @param WP_REST_Request $request Current request
+ *
+ * @return mixed
+ */
+function useroption_get_value( $object, $field_name, $request ) {
     return get_user_option( $field_name, $object['id'] );
 }
 
 /**
- * Handler for updating custom field data.
+ * Handler for updating custom user meta field data.
  *
  * @param mixed $value The value of the field
  * @param object $object The object from the response
@@ -113,6 +126,22 @@ function usermeta_get_value( $object, $field_name, $request ) {
  * @return bool|int
  */
 function usermeta_update_value( $value, $object, $field_name ) {
+    if ( ! $value || ! is_string( $value ) ) {
+        return;
+    }
+    return update_user_meta( $object->ID, $field_name, strip_tags( $value ) );
+}
+
+/**
+ * Handler for updating custom user option field data.
+ *
+ * @param mixed $value The value of the field
+ * @param object $object The object from the response
+ * @param string $field_name Name of field
+ *
+ * @return bool|int
+ */
+function useroption_update_value( $value, $object, $field_name ) {
     if ( ! $value || ! is_string( $value ) ) {
         return;
     }
