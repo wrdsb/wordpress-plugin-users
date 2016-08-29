@@ -11,5 +11,5 @@
 * GitHub Branch: master
 */
 
-require_once dirname( __FILE__ ) . "/profiles.php";
-
+require_once dirname(__FILE__). "/profiles.php";
+require_once dirname(__FILE__). "/rest-api.php";
