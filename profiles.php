@@ -60,6 +60,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Principal"             <?php selected('Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Principal</option>
           <option value="School Social Worker"  <?php selected('School Social Worker', get_user_option('wrdsb_job_title', $user->ID)); ?>>School Social Worker</option>
           <option value="Secretary"             <?php selected('Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Secretary</option>
+          <option value="Special Education Resource Teacher" <?php selected('Special Education Resource Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Special Education Resource Teacher</option>
           <option value="Teacher"               <?php selected('Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher</option>
           <option value="Teacher Librarian"     <?php selected('Teacher Librarian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher Librarian</option>
           <option value="Vice-Principal"        <?php selected('Vice-Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Vice-Principal</option>
