@@ -106,13 +106,15 @@ function wrdsb_extra_user_profile_fields($user) { ?>
     </tr>
   </table>
   <script>
-    jQuery(document).ready(function() {
-			jQuery('#user_login').parent().parent().hide();
+      jQuery(document).ready(function() {
+      <?php if (!is_super_admin()): ?>
+      jQuery('#user_login').parent().parent().hide();
       jQuery('#email').parent().parent().hide();
+      <?php endif; ?>
       jQuery('#url').parent().parent().hide();
-			jQuery("h2:contains('Contact Info')").hide();
-			jQuery("th:contains('Profile Picture')").parent().hide();
-			jQuery("th:contains('Profile Photo')").parent().parent().parent().hide();
+      jQuery("h2:contains('Contact Info')").hide();
+      jQuery("th:contains('Profile Picture')").parent().hide();
+      jQuery("th:contains('Profile Photo')").parent().parent().parent().hide();
     });
   </script>
 <?php } ?>
