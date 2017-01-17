@@ -13,4 +13,4 @@
 */
 
 require_once dirname(__FILE__). "/profiles.php";
-require_once dirname(__FILE__). "/api/register-fields.php";
+require_once dirname(__FILE__). "/rest-api/register-fields.php";
