@@ -2,13 +2,13 @@
 /**
  * Require wrdsb_ Field Files
  */
-require_once dirname( __FILE__ ) . '/fields/wrdsb-id-number.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-school.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-voicemail.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-job-title.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-display-in-staff-list.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-contact-options.php';
-require_once dirname( __FILE__ ) . '/fields/wrdsb-website-url.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-id-number.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-school.php';
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-voicemail.php';
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-job-title.php';
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-display-in-staff-list.php';
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-contact-options.php';
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-website-url.php';
 
 /**
  * Handler for getting custom user meta field data.
