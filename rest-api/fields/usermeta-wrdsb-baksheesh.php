@@ -6,8 +6,8 @@ function usermeta_register_wrdsb_baksheesh() {
 	register_rest_field( 'user',
 		'wrdsb_baksheesh',
 		array(
-			'get_callback'    => 'useroption_get_value',
-			'update_callback' => 'useroption_update_value',
+			'get_callback'    => 'usermeta_get_value',
+			'update_callback' => 'usermeta_update_value',
 			'schema'          => null,
 		)
 	);
