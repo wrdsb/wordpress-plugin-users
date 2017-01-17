@@ -6,8 +6,8 @@ function usermeta_register_wrdsb_section() {
 	register_rest_field( 'user',
 		'wrdsb_section',
 		array(
-			'get_callback'    => 'useroption_get_value',
-			'update_callback' => 'useroption_update_value',
+			'get_callback'    => 'usermeta_get_value',
+			'update_callback' => 'usermeta_update_value',
 			'schema'          => null,
 		)
 	);
