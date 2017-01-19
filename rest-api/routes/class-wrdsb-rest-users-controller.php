@@ -60,15 +60,6 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
-
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/me', array(
-			'methods'         => WP_REST_Server::READABLE,
-			'callback'        => array( $this, 'get_current_item' ),
-			'args'            => array(
-				'context'          => array(),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		));
 	}
 
 	/**
