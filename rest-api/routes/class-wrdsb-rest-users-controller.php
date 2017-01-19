@@ -15,7 +15,7 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 
 	public function __construct() {
 		$this->namespace = 'wrdsb/v2';
-		$this->rest_base = 'users-by-email';
+		$this->rest_base = 'user-by-email';
 
 		$this->meta = new WP_REST_User_Meta_Fields();
 	}
@@ -26,12 +26,6 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 	public function register_routes() {
 
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
-			array(
-				'methods'         => WP_REST_Server::READABLE,
-				'callback'        => array( $this, 'get_items' ),
-				'permission_callback' => array( $this, 'get_items_permissions_check' ),
-				'args'            => $this->get_collection_params(),
-			),
 			array(
 				'methods'         => WP_REST_Server::CREATABLE,
 				'callback'        => array( $this, 'create_item' ),
@@ -78,150 +72,6 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		));
-	}
-
-	/**
-	 * Permissions check for getting all users.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_Error|boolean
-	 */
-	public function get_items_permissions_check( $request ) {
-		// Check if roles is specified in GET request and if user can list users.
-		if ( ! empty( $request['roles'] ) && ! current_user_can( 'list_users' ) ) {
-			return new WP_Error( 'rest_user_cannot_view', __( 'Sorry, you cannot filter by role.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-
-		if ( 'edit' === $request['context'] && ! current_user_can( 'list_users' ) ) {
-			return new WP_Error( 'rest_forbidden_context', __( 'Sorry, you cannot view this resource with edit context.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-
-		if ( in_array( $request['orderby'], array( 'email', 'registered_date' ), true ) && ! current_user_can( 'list_users' ) ) {
-			return new WP_Error( 'rest_forbidden_orderby', __( 'Sorry, you cannot order by this parameter.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Get all users
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_Error|WP_REST_Response
-	 */
-	public function get_items( $request ) {
-
-		// Retrieve the list of registered collection query parameters.
-		$registered = $this->get_collection_params();
-
-		// This array defines mappings between public API query parameters whose
-		// values are accepted as-passed, and their internal WP_Query parameter
-		// name equivalents (some are the same). Only values which are also
-		// present in $registered will be set.
-		$parameter_mappings = array(
-			'exclude'  => 'exclude',
-			'include'  => 'include',
-			'order'    => 'order',
-			'per_page' => 'number',
-			'search'   => 'search',
-			'roles'    => 'role__in',
-		);
-
-		$prepared_args = array();
-
-		// For each known parameter which is both registered and present in the request,
-		// set the parameter's value on the query $prepared_args.
-		foreach ( $parameter_mappings as $api_param => $wp_param ) {
-			if ( isset( $registered[ $api_param ], $request[ $api_param ] ) ) {
-				$prepared_args[ $wp_param ] = $request[ $api_param ];
-			}
-		}
-
-		if ( isset( $registered['offset'] ) && ! empty( $request['offset'] ) ) {
-			$prepared_args['offset'] = $request['offset'];
-		} else {
-			$prepared_args['offset']  = ( $request['page'] - 1 ) * $prepared_args['number'];
-		}
-
-		if ( isset( $registered['orderby'] ) ) {
-			$orderby_possibles = array(
-				'id'              => 'ID',
-				'include'         => 'include',
-				'name'            => 'display_name',
-				'registered_date' => 'registered',
-				'slug'            => 'user_nicename',
-				'email'           => 'user_email',
-				'url'             => 'user_url',
-			);
-			$prepared_args['orderby'] = $orderby_possibles[ $request['orderby'] ];
-		}
-
-		if ( ! current_user_can( 'list_users' ) ) {
-			$prepared_args['has_published_posts'] = true;
-		}
-
-		if ( ! empty( $prepared_args['search'] ) ) {
-			$prepared_args['search'] = '*' . $prepared_args['search'] . '*';
-		}
-
-		if ( isset( $registered['slug'] ) && ! empty( $request['slug'] ) ) {
-			$prepared_args['search'] = $request['slug'];
-			$prepared_args['search_columns'] = array( 'user_nicename' );
-		}
-
-		/**
-		 * Filter arguments, before passing to WP_User_Query, when querying users via the REST API.
-		 *
-		 * @see https://developer.wordpress.org/reference/classes/wp_user_query/
-		 *
-		 * @param array           $prepared_args Array of arguments for WP_User_Query.
-		 * @param WP_REST_Request $request       The current request.
-		 */
-		$prepared_args = apply_filters( 'rest_user_query', $prepared_args, $request );
-
-		$query = new WP_User_Query( $prepared_args );
-
-		$users = array();
-		foreach ( $query->results as $user ) {
-			$data = $this->prepare_item_for_response( $user, $request );
-			$users[] = $this->prepare_response_for_collection( $data );
-		}
-
-		$response = rest_ensure_response( $users );
-
-		// Store pagination values for headers then unset for count query.
-		$per_page = (int) $prepared_args['number'];
-		$page = ceil( ( ( (int) $prepared_args['offset'] ) / $per_page ) + 1 );
-
-		$prepared_args['fields'] = 'ID';
-
-		$total_users = $query->get_total();
-		if ( $total_users < 1 ) {
-			// Out-of-bounds, run the query again without LIMIT for total count
-			unset( $prepared_args['number'], $prepared_args['offset'] );
-			$count_query = new WP_User_Query( $prepared_args );
-			$total_users = $count_query->get_total();
-		}
-		$response->header( 'X-WP-Total', (int) $total_users );
-		$max_pages = ceil( $total_users / $per_page );
-		$response->header( 'X-WP-TotalPages', (int) $max_pages );
-
-		$base = add_query_arg( $request->get_query_params(), rest_url( sprintf( '%s/%s', $this->namespace, $this->rest_base ) ) );
-		if ( $page > 1 ) {
-			$prev_page = $page - 1;
-			if ( $prev_page > $max_pages ) {
-				$prev_page = $max_pages;
-			}
-			$prev_link = add_query_arg( 'page', $prev_page, $base );
-			$response->link_header( 'prev', $prev_link );
-		}
-		if ( $max_pages > $page ) {
-			$next_page = $page + 1;
-			$next_link = add_query_arg( 'page', $next_page, $base );
-			$response->link_header( 'next', $next_link );
-		}
-
-		return $response;
 	}
 
 	/**
