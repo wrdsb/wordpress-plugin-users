@@ -118,11 +118,9 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 	 * @return WP_Error|boolean
 	 */
 	public function create_item_permissions_check( $request ) {
-
 		if ( ! current_user_can( 'create_users' ) ) {
 			return new WP_Error( 'rest_cannot_create_user', __( 'Sorry, you are not allowed to create resource.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-
 		return true;
 	}
 
@@ -214,17 +212,16 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 	 * @return WP_Error|boolean
 	 */
 	public function update_item_permissions_check( $request ) {
+		$email = $request['email'];
+		$user = get_user_by( 'email', $email );
 
-		$id = (int) $request['id'];
-
-		if ( ! current_user_can( 'edit_user', $id ) ) {
-			return new WP_Error( 'rest_cannot_edit', __( 'Sorry, you are not allowed to edit resource.' ), array( 'status' => rest_authorization_required_code() ) );
+		if ( ! current_user_can( 'edit_user', $user->ID ) ) {
+			return new WP_Error( 'rest_cannot_edit', __( 'Sorry, you are not allowed to edit this resource.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		if ( ! empty( $request['roles'] ) && ! current_user_can( 'edit_users' ) ) {
 			return new WP_Error( 'rest_cannot_edit_roles', __( 'Sorry, you are not allowed to edit roles of this resource.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
-
 		return true;
 	}
 
@@ -235,9 +232,10 @@ class WRDSB_REST_Users_Controller extends WP_REST_Controller {
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function update_item( $request ) {
-		$id = (int) $request['id'];
+		$email = $request['email'];
+		$user = get_user_by( 'email', $email );
+		$id = $user->ID;
 
-		$user = get_userdata( $id );
 		if ( ! $user ) {
 			return new WP_Error( 'rest_user_invalid_id', __( 'Invalid resource id.' ), array( 'status' => 404 ) );
 		}
