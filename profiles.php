@@ -54,13 +54,16 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Guidance Secretary"    <?php selected('Guidance Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Guidance Secretary</option>
           <option value="Head Custodian"        <?php selected('Head Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Custodian</option>
           <option value="Head Secretary"        <?php selected('Head Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Secretary</option>
+          <option value="IB Coordinator"        <?php selected('IB Coordinator', get_user_option('wrdsb_job_title', $user->ID)); ?>>IB Coordinator</option>
           <option value="In School Technician"  <?php selected('In School Technician', get_user_option('wrdsb_job_title', $user->ID)); ?>>In School Technician</option>
           <option value="Library Clerk"         <?php selected('Library Clerk', get_user_option('wrdsb_job_title', $user->ID)); ?>>Library Clerk</option>
           <option value="Office Manager"        <?php selected('Office Manager', get_user_option('wrdsb_job_title', $user->ID)); ?>>Office Manager</option>
           <option value="Principal"             <?php selected('Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Principal</option>
           <option value="School Social Worker"  <?php selected('School Social Worker', get_user_option('wrdsb_job_title', $user->ID)); ?>>School Social Worker</option>
           <option value="Secretary"             <?php selected('Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Secretary</option>
+          <option value="Social Worker"         <?php selected('Social Worker', get_user_option('wrdsb_job_title', $user->ID)); ?>>Social Worker</option>
           <option value="Special Education Resource Teacher" <?php selected('Special Education Resource Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Special Education Resource Teacher</option>
+          <option value="Supervision Monitor"   <?php selected('Supervision Monitor', get_user_option('wrdsb_job_title', $user->ID)); ?>>Supervision Monitor</option>
           <option value="Teacher"               <?php selected('Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher</option>
           <option value="Teacher Librarian"     <?php selected('Teacher Librarian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Teacher Librarian</option>
           <option value="Vice-Principal"        <?php selected('Vice-Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Vice-Principal</option>
