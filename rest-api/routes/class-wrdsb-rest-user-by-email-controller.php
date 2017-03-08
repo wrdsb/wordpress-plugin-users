@@ -3,7 +3,7 @@
 /**
  * Access users
  */
-class WRDSB_REST_Users_Controller extends WP_REST_Controller {
+class WRDSB_REST_User_by_Email_Controller extends WP_REST_Controller {
 
 	/**
 	 * Instance of a user meta fields object.
