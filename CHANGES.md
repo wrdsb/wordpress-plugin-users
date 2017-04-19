@@ -1,3 +1,7 @@
+#### 1.1.0
+* Add rest route for user-by-id-number
+* Add rest route for user-by-username
+
 #### 0.0.3
 * Add "Special Education Resource Teacher" to profiles
 
