@@ -8,6 +8,8 @@ require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-employee-group-code.ph
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-employee-group-description.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-extension.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-home-loc.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-job-code.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-job-desc.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-location-code.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-location-desc.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-panel.php';
