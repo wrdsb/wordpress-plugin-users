@@ -2,18 +2,32 @@
 /**
  * Require wrdsb_ Field Files
  */
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-activity-code.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-employee-group-category.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-employee-group-code.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-employee-group-description.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-extension.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-home-loc.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-location-code.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-location-desc.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-panel.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-phone-no.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-school-code.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-ipps-school-type.php';
+
 require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-id-number.php';
 require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-school.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-baksheesh.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-supervisor.php';
+require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-section.php';
+
+require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-physical-location.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-voicemail.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-job-title.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-display-in-staff-list.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-contact-options.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-website-url.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-phone-extension.php';
-require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-baksheesh.php';
-require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-supervisor.php';
-require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-physical-location.php';
-require_once dirname( __FILE__ ) . '/fields/usermeta-wrdsb-section.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-regular-hours.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-is-in-today.php';
 require_once dirname( __FILE__ ) . '/fields/useroption-wrdsb-is-available-now.php';
