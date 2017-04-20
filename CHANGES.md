@@ -1,3 +1,6 @@
+#### 1.1.1
+* user-by-id-number, user-by-email, user-by-username controller classes now all subclasses of mail user controller
+
 #### 1.1.0
 * Add rest route for user-by-id-number
 * Add rest route for user-by-username
