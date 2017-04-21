@@ -97,6 +97,21 @@ class WRDSB_REST_Blog_User_Controller extends WP_REST_Users_Controller {
 			return new WP_Error( 'rest_user_missing_role', __( 'Bad Request: missing role' ), array( 'status' => 400 ) );
 		}
 
+		// Protect existing roles
+		if ( is_user_member_of_blog( $user->ID, get_current_blog_id() ) ) {
+			$member = new WP_User( $user->ID, '', get_current_blog_id() );
+
+			if ( in_array( 'administrator', $member->roles) ) {
+				return new WP_Error( 'rest_user_demotion_failed', __( 'Bad Request: User is an administrator' ), array( 'status' => 400 ) );
+			}
+			if ( in_array( 'editor', $member->roles) ) {
+				return new WP_Error( 'rest_user_demotion_failed', __( 'Bad Request: User is an editor' ), array( 'status' => 400 ) );
+			}
+			if ( in_array( 'author', $member->roles) ) {
+				return new WP_Error( 'rest_user_demotion_failed', __( 'Bad Request: User is an author' ), array( 'status' => 400 ) );
+			}
+		}
+
 		$user_id = $user->ID;
 		$blog_id = get_current_blog_id();
 		$role = (string) reset( $request['roles'] );
