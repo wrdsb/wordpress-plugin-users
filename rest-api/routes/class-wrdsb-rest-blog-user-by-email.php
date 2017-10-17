@@ -1,5 +1,5 @@
 <?php
-class WRDSB_REST_Blog_User_Controller extends WP_REST_Users_Controller {
+class WRDSB_REST_Blog_User_by_Email_Controller extends WP_REST_Users_Controller {
 	/**
 	 * Instance of a user meta fields object.
 	 *
@@ -13,7 +13,7 @@ class WRDSB_REST_Blog_User_Controller extends WP_REST_Users_Controller {
 	 */
 	public function __construct() {
 		$this->namespace = 'wrdsb/v2';
-		$this->rest_base = 'blog-user';
+		$this->rest_base = 'blog-user-by-email';
 
 		$this->meta = new WP_REST_User_Meta_Fields();
 	}
@@ -23,7 +23,7 @@ class WRDSB_REST_Blog_User_Controller extends WP_REST_Users_Controller {
 	 */
 	public function register_routes() {
 
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[0-9]+)', array(
+		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[^\@]+\@[^\@]+)', array(
 			array(
 				'methods'             => WP_REST_Server::EDITABLE,
 				'callback'            => array( $this, 'update_item' ),
@@ -211,25 +211,10 @@ class WRDSB_REST_Blog_User_Controller extends WP_REST_Users_Controller {
 	 * @param int $id Supplied ID.
 	 * @return WP_User|WP_Error True if ID is valid, WP_Error otherwise.
 	 */
-	protected function get_user( $id ) {
+	protected function get_user( $email ) {
 		$error = new WP_Error( 'rest_user_invalid_id', __( 'Invalid user ID.' ), array( 'status' => 404 ) );
 
-		if ( (int) $id <= 0 ) {
-			return $error;
-		}
-
-		// Query for users based on the meta data
-		$user_query = new WP_User_Query(
-			array(
-				'blog_id'     => 1,
-				'meta_key'    => 'wrdsb_id_number',
-				'meta_value'  => $id,
-			)
-		);
- 
-		// Get the results from the query, returning the first user
-		$users = $user_query->get_results();
-		$user = reset($users);
+		$user = get_user_by( 'email', $email );
 
 		if ( empty( $user ) || ! $user->exists() ) {
 			return $error;
