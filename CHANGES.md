@@ -1,3 +1,6 @@
+#### 2.0.1
+* fix require_once in register-routes to match new route controller filenames
+
 #### 2.0.0
 * move blog-user route to blog-user-by-id-number
 * add blog-user-by-email route
