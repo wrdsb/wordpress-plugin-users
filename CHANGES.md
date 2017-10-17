@@ -1,3 +1,6 @@
+#### 2.0.2
+* fix register routes to use correct controller names
+
 #### 2.0.1
 * fix require_once in register-routes to match new route controller filenames
 
