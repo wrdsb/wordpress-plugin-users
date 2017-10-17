@@ -1,3 +1,8 @@
+#### 2.0.0
+* move blog-user route to blog-user-by-id-number
+* add blog-user-by-email route
+* add blog-user-by-username route
+
 #### 1.1.1
 * user-by-id-number, user-by-email, user-by-username controller classes now all subclasses of mail user controller
 
