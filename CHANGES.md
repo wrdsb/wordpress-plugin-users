@@ -1,3 +1,6 @@
+#### 2.0.3
+* Add Head of Guidance and Teacher – Guidance to roles
+
 #### 2.0.2
 * fix register routes to use correct controller names
 
