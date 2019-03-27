@@ -43,6 +43,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Admin Assistant"       <?php selected('Admin Assistant', get_user_option('wrdsb_job_title', $user->ID)); ?>>Admin Assistant</option>
           <option value="Assistant Office Supervisor"  <?php selected('Assistant Office Supervisor', get_user_option('wrdsb_job_title', $user->ID)); ?>>Assistant Office Supervisor</option>
           <option value="Attendance Secretary"  <?php selected('Attendance Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Attendance Secretary</option>
+          <option value="Co-op Coordinator"     <?php selected('Co-op Coordinator', get_user_option('wrdsb_job_title', $user->ID)); ?>>Co-op Coordinator</option>
           <option value="Counselor"             <?php selected('Counselor', get_user_option('wrdsb_job_title', $user->ID)); ?>>Counselor</option>
           <option value="Custodian"             <?php selected('Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Custodian</option>
           <option value="CYW"                   <?php selected('CYW', get_user_option('wrdsb_job_title', $user->ID)); ?>>CYW</option>
@@ -54,10 +55,12 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Guidance Secretary"    <?php selected('Guidance Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Guidance Secretary</option>
           <option value="Head Custodian"        <?php selected('Head Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Custodian</option>
           <option value="Head Secretary"        <?php selected('Head Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Secretary</option>
-          <option value="Head of Guidance"        <?php selected('Head of Guidance', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Guidance</option>
+          <option value="Head of Guidance"      <?php selected('Head of Guidance', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Guidance</option>
+          <option value="Head of Science"       <?php selected('Head of Science', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Science</option>
           <option value="Head of Special Education" <?php selected('Head of Special Education', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Special Education</option>
           <option value="IB Coordinator"        <?php selected('IB Coordinator', get_user_option('wrdsb_job_title', $user->ID)); ?>>IB Coordinator</option>
           <option value="In School Technician"  <?php selected('In School Technician', get_user_option('wrdsb_job_title', $user->ID)); ?>>In School Technician</option>
+          <option value="Itinerant Resource Teacher"  <?php selected('Itinerant Resource Teacher', get_user_option('wrdsb_job_title', $user->ID)); ?>>Itinerant Resource Teacher</option>
           <option value="Library Clerk"         <?php selected('Library Clerk', get_user_option('wrdsb_job_title', $user->ID)); ?>>Library Clerk</option>
           <option value="Office Manager"        <?php selected('Office Manager', get_user_option('wrdsb_job_title', $user->ID)); ?>>Office Manager</option>
           <option value="Principal"             <?php selected('Principal', get_user_option('wrdsb_job_title', $user->ID)); ?>>Principal</option>
