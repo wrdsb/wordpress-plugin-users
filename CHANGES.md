@@ -1,3 +1,6 @@
+#### 2.0.4
++ Head of Languages added to roles
+
 #### 2.0.3
 * Add Head of Guidance and Teacher – Guidance to roles
 

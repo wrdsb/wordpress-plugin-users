@@ -56,6 +56,7 @@ function wrdsb_extra_user_profile_fields($user) { ?>
           <option value="Head Custodian"        <?php selected('Head Custodian', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Custodian</option>
           <option value="Head Secretary"        <?php selected('Head Secretary', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head Secretary</option>
           <option value="Head of Guidance"      <?php selected('Head of Guidance', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Guidance</option>
+          <option value="Head of Languages"      <?php selected('Head of Languages', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Languages</option>
           <option value="Head of Science"       <?php selected('Head of Science', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Science</option>
           <option value="Head of Special Education" <?php selected('Head of Special Education', get_user_option('wrdsb_job_title', $user->ID)); ?>>Head of Special Education</option>
           <option value="IB Coordinator"        <?php selected('IB Coordinator', get_user_option('wrdsb_job_title', $user->ID)); ?>>IB Coordinator</option>
